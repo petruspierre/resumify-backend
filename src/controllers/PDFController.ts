@@ -29,8 +29,10 @@ class PDFController {
     const date = new Date();
     const parsedDate = + date;
     const hash = crypto.randomBytes(3).toString('hex');
+    const filePath = `uploads/tmp/${parsedDate}-${hash}-output.pdf`
+    const finalPath = `http://192.168.0.27:3333/${filePath}`
 
-    doc.pipe(fs.createWriteStream(`uploads/tmp/${parsedDate}-${hash}-output.pdf`));
+    doc.pipe(fs.createWriteStream(filePath));
 
     generateHeader(doc, discipline, title);
 
@@ -59,7 +61,7 @@ class PDFController {
 
     doc.end();
 
-    res.status(200).json({ ok: true });
+    res.status(200).json({ finalPath });
   }
 }
 
