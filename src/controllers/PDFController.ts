@@ -56,6 +56,16 @@ class PDFController {
           align: 'justify'
         })
         .moveDown();
+      } else if(info.type === 'paragraph') {
+        doc
+          .fontSize(12)
+          .fillColor('#000')
+          .text(info.content[0], {
+            paragraphGap: 3,
+            indent: 20,
+            align: 'justify'
+          })
+          .moveDown();
       }
     })
 
