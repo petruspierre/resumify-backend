@@ -58,6 +58,7 @@ class PDFController {
         .moveDown();
       } else if(info.type === 'paragraph') {
         doc
+          .font(JosefinSans)
           .fontSize(12)
           .fillColor('#000')
           .text(info.content[0], {
