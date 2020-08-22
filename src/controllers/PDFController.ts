@@ -5,6 +5,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 
 import generateHeader from '../utils/generateHeader';
+import getAccentColor from '../utils/getAccentColor';
 
 const JosefinSans = path.resolve(__dirname, '..', '..', 'assets', 'fonts', 'JosefinSans-Regular.ttf');
 
@@ -30,41 +31,46 @@ class PDFController {
     const parsedDate = + date;
     const hash = crypto.randomBytes(3).toString('hex');
     const filePath = `uploads/tmp/${parsedDate}-${hash}-output.pdf`
-    const finalPath = `http://192.168.0.27:3333/${filePath}`
+    const finalPath = `http://10.0.2.2:3333/${filePath}`
+
+    const accentColor = getAccentColor(discipline);
 
     doc.pipe(fs.createWriteStream(filePath));
 
     generateHeader(doc, discipline, title);
 
     body.forEach((info:BodyInfo) => {
-      if(info.type === 'topic') {
+      if (info.type === 'topic') {
         doc
-        .font(JosefinSans)
-        .fillColor('#FA8072')
-        .fontSize(14)
-        .text(info.title, {
-          align: 'left',
-          paragraphGap: 5
-        })
-        .fontSize(2)
-        .moveDown()
-        .fontSize(12)
-        .fillColor('#000')
-        .list(info.content, {
-          paragraphGap: 3,
-          indent: 20,
-          align: 'justify'
-        })
-        .moveDown();
-      } else if(info.type === 'paragraph') {
+          .font(JosefinSans)
+          .fillColor('#000')
+          .fontSize(12)
+          .text(`• ${info.title}`, {
+            align: 'left',
+            paragraphGap: 5
+          })
+          .fontSize(2)
+          .moveDown();
+      } else if (info.type === 'paragraph') {
         doc
           .font(JosefinSans)
           .fontSize(12)
           .fillColor('#000')
           .text(info.content[0], {
-            paragraphGap: 3,
+            paragraphGap: 5,
             indent: 20,
             align: 'justify'
+          })
+          .moveDown();
+      } else if (info.type === 'subtitle') {
+        doc
+          .font(JosefinSans)
+          .fontSize(14)
+          .fillColor(accentColor)
+          .text(info.content[0], {
+            paragraphGap: 5,
+            indent: 20,
+            align: 'center'
           })
           .moveDown();
       }

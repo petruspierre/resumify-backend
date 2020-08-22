@@ -1,12 +1,14 @@
 import path from 'path';
+import getAccentColor from './getAccentColor';
 
 const DancingScript = path.resolve(__dirname, '..', '..', 'assets', 'fonts', 'DancingScript-Regular.ttf');
 
 const generateHeader = (doc: PDFKit.PDFDocument, discipline: string, title: string) => {
+  const accentColor = getAccentColor(discipline);
   doc
   .font(DancingScript)
   .fontSize(60)
-  .fillColor('#FA8072')
+  .fillColor(accentColor)
   .text(discipline, {
     align: 'center'
   })
@@ -14,7 +16,7 @@ const generateHeader = (doc: PDFKit.PDFDocument, discipline: string, title: stri
   .moveDown()
   .font(DancingScript)
   .fontSize(24)
-  .fillColor('#FA8072')
+  .fillColor(accentColor)
   .text(title, {
     align: 'center'
   })
