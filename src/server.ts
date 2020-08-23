@@ -4,6 +4,8 @@ import path from 'path';
 
 import PDFController from './controllers/PDFController';
 
+require('dotenv').config();
+
 const app = express();
 const PORT : string|number = process.env.PORT || 3333;
 
