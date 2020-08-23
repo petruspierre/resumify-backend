@@ -1,5 +1,5 @@
 import path from 'path';
-import getAccentColor from './getAccentColor.ts';
+import getAccentColor from './getAccentColor';
 
 const DancingScript = path.resolve(__dirname, '..', '..', 'assets', 'fonts', 'DancingScript-Regular.ttf');
 
