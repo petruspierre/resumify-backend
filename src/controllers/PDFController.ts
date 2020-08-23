@@ -19,19 +19,13 @@ class PDFController {
   create = (req: Request, res: Response) => {
     const { title, discipline, body } = req.body;
 
-    [{
-      type: 'topic',
-      title: 'jooooj',
-      content: []
-    }]
+    const doc = new PDFDocument();
 
-    const doc = new PDFDocument;
-    
     const date = new Date();
-    const parsedDate = + date;
+    const parsedDate = +date;
     const hash = crypto.randomBytes(3).toString('hex');
-    const filePath = `uploads/tmp/${parsedDate}-${hash}-output.pdf`
-    const finalPath = `http://10.0.2.2:3333/${filePath}`
+    const filePath = `uploads/tmp/${parsedDate}-${hash}-output.pdf`;
+    const finalPath = `http://10.0.2.2:3333/${filePath}`;
 
     const accentColor = getAccentColor(discipline);
 
@@ -47,7 +41,7 @@ class PDFController {
           .fontSize(12)
           .text(`• ${info.title}`, {
             align: 'left',
-            paragraphGap: 5
+            paragraphGap: 5,
           })
           .fontSize(2)
           .moveDown();
@@ -59,7 +53,7 @@ class PDFController {
           .text(info.content[0], {
             paragraphGap: 5,
             indent: 20,
-            align: 'justify'
+            align: 'justify',
           })
           .moveDown();
       } else if (info.type === 'subtitle') {
@@ -70,11 +64,11 @@ class PDFController {
           .text(info.content[0], {
             paragraphGap: 5,
             indent: 20,
-            align: 'center'
+            align: 'center',
           })
           .moveDown();
       }
-    })
+    });
 
     doc.end();
 

@@ -1,7 +1,7 @@
 const getAccentColor = (discipline: string) => {
   let accentColor = '#7C77B9';
 
-  if (discipline === 'Biologia') { 
+  if (discipline === 'Biologia') {
     accentColor = '#9FD8CB';
   } else if (discipline === 'Matemática') {
     accentColor = '#F02D3A';
@@ -12,6 +12,6 @@ const getAccentColor = (discipline: string) => {
   }
 
   return accentColor;
-}
+};
 
 export default getAccentColor;
