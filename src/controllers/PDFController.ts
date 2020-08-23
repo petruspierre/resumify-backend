@@ -25,7 +25,7 @@ class PDFController {
     const parsedDate = +date;
     const hash = crypto.randomBytes(3).toString('hex');
     const filePath = `uploads/tmp/${parsedDate}-${hash}-output.pdf`;
-    const finalPath = `http://10.0.2.2:3333/${filePath}`;
+    const finalPath = `${process.env.URL}:${process.env.PORT}/${filePath}`;
 
     const accentColor = getAccentColor(discipline);
 
