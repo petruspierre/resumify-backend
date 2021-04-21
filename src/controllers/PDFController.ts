@@ -62,8 +62,6 @@ class PDFController {
           .fontSize(14)
           .fillColor(accentColor)
           .text(info.content[0], {
-            paragraphGap: 5,
-            indent: 20,
             align: 'center',
           })
           .moveDown();
