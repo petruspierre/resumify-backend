@@ -36,10 +36,12 @@ $ yarn dev
 Send the type, title and content in JSON format
 
 ```
-type: "topic"
-title: "example title"
-content: [
-  "Example content"
+title: string
+discipline: string:
+body: [
+  type: "topic" | "paragraph" | "subtitle"
+  title: string
+  content: string[]
 ]
 ```
 
