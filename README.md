@@ -37,15 +37,15 @@ Send the type, title and content in JSON format
 
 ```
 title: string
-discipline: string:
+discipline: string
 body: [
-  type: "topic" | "paragraph" | "subtitle"
-  title: string
-  content: string[]
+  {
+    type: "topic" | "paragraph" | "subtitle"
+    title: string
+    content: string[]
+  {
 ]
 ```
-
-> type can be "topic" or "paragraph"
 
 ## Authors
 - [Petrus Pierre](https://github.com/petruspierre/)
